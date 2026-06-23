@@ -15,6 +15,46 @@ A full-stack Trello-inspired project management system built with **React**, **N
 
 ---
 
+## 🗄️ Database ER Diagram
+
+```mermaid
+erDiagram
+    users {
+        uuid id PK
+        string name
+        string email UK
+        string password
+        timestamp created_at
+    }
+    projects {
+        uuid id PK
+        uuid user_id FK
+        string name
+        text description
+        string status
+        date start_date
+        date end_date
+        timestamp created_at
+        timestamp updated_at
+    }
+    tasks {
+        uuid id PK
+        uuid project_id FK
+        string name
+        text description
+        string status
+        string priority
+        date due_date
+        decimal hours_tracked
+        timestamp created_at
+        timestamp updated_at
+    }
+    users ||--o{ projects : "has"
+    projects ||--o{ tasks : "has"
+```
+
+---
+
 ## 📁 Folder Structure
 
 ```
