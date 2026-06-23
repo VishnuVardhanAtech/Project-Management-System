@@ -44,9 +44,11 @@ app.listen(PORT, () => {
   console.log(`\n🚀 Backend  →  http://localhost:${PORT}`);
   console.log(`💾 Database →  Supabase\n`);
   
-  // Open automatically in Chrome / Default Browser
-  const startCmd = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
-  exec(`${startCmd} http://localhost:${PORT}`);
+  // Open automatically in Chrome / Default Browser (Local only)
+  if (process.env.NODE_ENV !== 'production') {
+    const startCmd = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
+    exec(`${startCmd} http://localhost:${PORT}`);
+  }
 });
 
 module.exports = app;
